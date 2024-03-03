@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: ${APP_CONTAINER_NAME:-react-app}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_FOLDER_NAME=${APP_FOLDER_NAME:-app}
+    volumes:
+      - ./${APP_FOLDER_NAME:-app}/src:/app/src
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    tty: true
